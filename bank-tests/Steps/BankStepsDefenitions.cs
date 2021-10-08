@@ -3,43 +3,111 @@ using System;
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using BankTests.PageObjects;
+using BankTests.Drivers;
 
 namespace BankTests.Steps
 {
     [Binding]
     public class BankSteps
     {
-        private ChromeDriver chromeDriver;
-        
+        private MainPage mainPage;
+        private RegPage regPage;
 
-        public BankSteps() => chromeDriver = new ChromeDriver();
+        private readonly WebDriverContext webDriverContext;
+
+        public BankSteps(WebDriverContext webDriverContext)
+        {
+            this.webDriverContext = webDriverContext;
+        }
+
+        
 
         [Given(@"I have navigated to main bank page")]
         public void GivenIHaveNavigatedToMainBankPage()
         {
-            chromeDriver.Navigate().GoToUrl("https://parabank.parasoft.com/parabank/register.htm");
-            var waitForConfirm = new WebDriverWait(chromeDriver, TimeSpan.FromSeconds(3)).Until(
-               c => {
-                   IWebElement e = c.FindElement(By.XPath("//img[@alt='ParaBank']"));
-                   return e.Displayed;
-               });
+            mainPage = new MainPage(webDriverContext.driver);
+            mainPage.NavigateOnMainPage();
         }
         
-        [When(@"I click register link")]
+        [Given(@"I click register link")]
         public void WhenIClickRegisterLink()
         {
-            chromeDriver.FindElement(By.XPath("//a[text()='Register']"));
-            var waitForConfirm = new WebDriverWait(chromeDriver, TimeSpan.FromSeconds(3)).Until(
-               c => {
-                   IWebElement e = c.FindElement(By.Id("customerForm"));
-                   return e.Displayed;
-               });
+            regPage = mainPage.ClickRegistrationLink();
         }
 
-        [Then(@"I can see registration button")]
-        public void ThenICanSeeRegistrationButton()
+
+        [When(@"I enter (.*) in fname field")]
+        public void WhenIEnterInFnameField(string p0)
         {
-            chromeDriver.FindElement(By.XPath("//input[@class='button' and @value='Register']"));
+            regPage.fillFName(p0);
+        }
+
+        [When(@"I enter (.*) in lname field")]
+        public void WhenIEnterInLnameField(string p0)
+        {
+            regPage.fillLName(p0);
+        }
+
+        [When(@"I enter (.*) in address field")]
+        public void WhenIEnterInAddressField(string p0)
+        {
+            regPage.fillAddress(p0);
+        }
+
+        [When(@"I enter (.*) in city field")]
+        public void WhenIEnterInCityField(string p0)
+        {
+            regPage.fillCity(p0);
+        }
+
+        [When(@"I enter (.*) in state field")]
+        public void WhenIEnterInStateField(string p0)
+        {
+            regPage.fillState(p0);
+        }
+
+        [When(@"I enter (.*) in zip field")]
+        public void WhenIEnterInZipField(string p0)
+        {
+            regPage.fillZip(p0);
+        }
+
+        [When(@"I enter (.*) in phone field")]
+        public void WhenIEnterInPhoneField(string p0)
+        {
+            regPage.fillPhone(p0);
+        }
+
+        [When(@"I enter (.*) in ssn field")]
+        public void WhenIEnterInSsnField(string p0)
+        {
+            regPage.fillSSN(p0);
+        }
+
+        [When(@"I enter (.*) in username field")]
+        public void WhenIEnterInUsernameField(string p0)
+        {
+            regPage.fillUsername(p0);
+        }
+
+        [When(@"I enter (.*) in password and confirm fields")]
+        public void WhenIEnterInPasswordAndConfirmFields(string p0)
+        {
+            regPage.fillPassword(p0);
+            regPage.confirmPassword(p0);
+        }
+
+        [When(@"I click register button")]
+        public void WhenIClickRegisterButton()
+        {
+            regPage.ClickRegisterButton();
+        }
+
+        [Then(@"I should see a confirmation message")]
+        public void ThenIShouldSeeAConfirmationMessage()
+        {
+            regPage.LocateConfirmationMessage();
         }
     }
 }

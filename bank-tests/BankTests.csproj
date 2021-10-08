@@ -7,12 +7,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="94.0.4606.6100" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.9.22" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.5" />
-
-    
-    <PackageReference Include="SpecRun.SpecFlow" Version="3.9.7" />
     
 
     
@@ -24,10 +23,6 @@
     
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="PageObjects\" />
   </ItemGroup>
 
 </Project>
