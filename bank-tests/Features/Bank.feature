@@ -1,7 +1,6 @@
 ﻿Feature: Bank
 	Simple bank resgistration check
 
-@withBrowserTeardown
 Scenario: Registration check
 	Given I have navigated to main bank page
 	And I click register link

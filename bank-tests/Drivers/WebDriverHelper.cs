@@ -5,13 +5,18 @@ using System.Text;
 
 namespace BankTests.Drivers
 {
-    public class WebDriverContext
+    public class WebDriverHelper : IDisposable
     {
         public ChromeDriver driver;
 
-        public WebDriverContext()
+        public WebDriverHelper()
         {
             driver = new ChromeDriver();
+        }
+
+        public void Dispose()
+        {
+            driver.Quit();
         }
     }
 }

@@ -14,11 +14,11 @@ namespace BankTests.Steps
         private MainPage mainPage;
         private RegPage regPage;
 
-        private readonly WebDriverContext webDriverContext;
+        private readonly WebDriverHelper webDriverHelper;
 
-        public BankSteps(WebDriverContext webDriverContext)
+        public BankSteps(WebDriverHelper webDriverContext)
         {
-            this.webDriverContext = webDriverContext;
+            this.webDriverHelper = webDriverContext;
         }
 
         
@@ -26,7 +26,7 @@ namespace BankTests.Steps
         [Given(@"I have navigated to main bank page")]
         public void GivenIHaveNavigatedToMainBankPage()
         {
-            mainPage = new MainPage(webDriverContext.driver);
+            mainPage = new MainPage(webDriverHelper.driver);
             mainPage.NavigateOnMainPage();
         }
         
