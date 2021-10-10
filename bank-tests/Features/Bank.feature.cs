@@ -75,7 +75,7 @@ namespace BankTests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Registration check")]
-        [NUnit.Framework.TestCaseAttribute("paul", "mikj", "somestreet", "somecity", "somestate", "somezip", "651641615", "615651", "avlevovussssssssss", "123123", null)]
+        [NUnit.Framework.TestCaseAttribute("paul", "mikj", "somestreet", "somecity", "somestate", "somezip", "651641615", "615651", "avlevovusssssssssss", "123123", null)]
         public virtual void RegistrationCheck(string fname, string lname, string address, string city, string state, string zip, string phone, string ssn, string username, string password, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -158,10 +158,10 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Negative address registration check")]
+        [NUnit.Framework.DescriptionAttribute("Negative registration check")]
         [NUnit.Framework.TestCaseAttribute("paul", "mikj", "", "somecity", "somestate", "somezip", "651641615", "615651", "avlevovussssssss", "123123", "addressErr", null)]
         [NUnit.Framework.TestCaseAttribute("paul", "", "somestreet", "somecity", "somestate", "somezip", "651641615", "615651", "avlevovussssssss", "123123", "lnameErr", null)]
-        public virtual void NegativeAddressRegistrationCheck(string fname, string lname, string address, string city, string state, string zip, string phone, string ssn, string username, string password, string error, string[] exampleTags)
+        public virtual void NegativeRegistrationCheck(string fname, string lname, string address, string city, string state, string zip, string phone, string ssn, string username, string password, string error, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -176,7 +176,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("username", username);
             argumentsOfScenario.Add("password", password);
             argumentsOfScenario.Add("error", error);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative address registration check", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative registration check", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

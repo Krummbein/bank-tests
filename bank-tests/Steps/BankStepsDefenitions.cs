@@ -1,14 +1,7 @@
-﻿using OpenQA.Selenium.Chrome;
-using System;
-using TechTalk.SpecFlow;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using TechTalk.SpecFlow;
 using BankTests.PageObjects;
 using BankTests.Drivers;
 using FluentAssertions;
-using System.Threading;
-using TechTalk.SpecFlow.Assist;
-using TechTalk.SpecFlow.Assist.ValueRetrievers;
 
 namespace BankTests.Steps
 {
@@ -107,8 +100,8 @@ namespace BankTests.Steps
             regPage.ClickRegisterButton();
         }
 
-        [Then(@"I should see a confirmation message")]
-        public void ThenIShouldSeeAConfirmationMessage()
+        [Then(@"I should see a registration confirmation message")]
+        public void ThenIShouldSeeARegistrationConfirmationMessage()
         {
             bool isMessageShown = regPage.LocateConfirmationMessage();
             isMessageShown.Should().BeTrue();
@@ -120,6 +113,48 @@ namespace BankTests.Steps
             bool isErrorMessageShown = regPage.LocateErrorMessage(p0);
             isErrorMessageShown.Should().BeTrue();
         }
+
+
+
+
+
+
+
+        [Given(@"I have loged in as (.*) with (.*)")]
+        public void GivenIHaveLogedInAsWith(string p0, string p1)
+        {
+            
+        }
+
+        [When(@"I click Update contact info link")]
+        public void WhenIClickUpdateContactInfoLink()
+        {
+
+        }
+
+        [When(@"I clear (.*) and fill it with (.*)")]
+        public void WhenIClearAndFillItWith(string p0, string p1)
+        {
+            
+        }
+
+        [When(@"I click Update profile button")]
+        public void WhenIClickUpdateProfileButton()
+        {
+
+        }
+
+        [Then(@"I should see the update confirmation message")]
+        public void ThenIShouldSeeTheUpdateConfirmationMessage(Table table)
+        {
+            
+        }
+
+        
+
+        
+
+
 
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -17,6 +15,13 @@ namespace BankTests.PageObjects
             this.driver = driver;
         }
 
+
+        private IWebElement usernameField => driver.FindElement(By.XPath("//input[@name='username']"));
+        private IWebElement passwordField => driver.FindElement(By.XPath("//input[@name='password']"));
+        private IWebElement logInButton => driver.FindElement(By.XPath("//input[@value='Log In']"));
+        private IWebElement registrationLink => driver.FindElement(By.XPath("//a[text()='Register']"));
+
+
         public void NavigateOnMainPage()
         {
             driver.Navigate().GoToUrl(pageURL);
@@ -30,7 +35,7 @@ namespace BankTests.PageObjects
 
         public RegPage ClickRegistrationLink()
         {
-            driver.FindElement(By.XPath("//a[text()='Register']")).Click();
+            registrationLink.Click();
             var waitForConfirm = new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(
                c => {
                    IWebElement e = c.FindElement(By.Id("customerForm"));
@@ -39,6 +44,20 @@ namespace BankTests.PageObjects
             return new RegPage(driver);
         }
 
+        public OverviewPage ClickLogInButton()
+        {
+            logInButton.Click();
+            var waitForConfirm = new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(
+              c => {
+                  IWebElement e = c.FindElement(By.XPath("//h1[text()='Accounts Overview']"));
+                  return e.Displayed;
+              });
+            return new OverviewPage(driver);
+        }
 
+        public void LogInAsUserWithPassword(string nickname, string password)
+        {
+
+        }
     }
 }

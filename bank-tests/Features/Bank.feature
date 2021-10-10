@@ -1,6 +1,7 @@
 ﻿Feature: Bank
 	Simple bank resgistration check
 
+# cookie needed
 Scenario: Registration check
 	Given I have navigated to main bank page
 	And I click register link
@@ -15,11 +16,11 @@ Scenario: Registration check
 	And I enter <username> in username field
 	And I enter <password> in password and confirm fields
 	And I click register button
-	Then I should see a confirmation message
+	Then I should see a registration confirmation message
 
 	Examples:
 	| fname | lname | address    | city     | state     | zip     | phone     | ssn    | username           | password |
-	| paul  | mikj  | somestreet | somecity | somestate | somezip | 651641615 | 615651 | avlevovussssssssss | 123123   |
+	| paul  | mikj  | somestreet | somecity | somestate | somezip | 651641615 | 615651 | avlevovusssssssssss | 123123   |
 
 
 Scenario: Negative registration check
@@ -44,3 +45,18 @@ Scenario: Negative registration check
 	| paul  |       | somestreet | somecity | somestate | somezip | 651641615 | 615651 | avlevovussssssss | 123123   | lnameErr   |
 	
 	# It is not safe to rely on empty strings. It has to be a way to specify such cases by "null" or smth.
+
+
+
+# cookie needed
+Scenario: Profile update check
+	Given I have navigated to main bank page
+	And I have loged in as <user> with <password>
+	When I click Update contact info link
+	And  I clear <field> and fill it with <new input>
+	And I click Update profile button
+	Then I should see the update confirmation message
+	
+
+	| user       | password | field | new input      |
+	| paulisimus | 123      |       | newPhoneNumber |
