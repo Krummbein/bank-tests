@@ -30,7 +30,7 @@ namespace BankTests.PageObjects
 
         public RegPage ClickRegistrationLink()
         {
-            driver.FindElement(By.XPath("//a[text()='Register']"));
+            driver.FindElement(By.XPath("//a[text()='Register']")).Click();
             var waitForConfirm = new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(
                c => {
                    IWebElement e = c.FindElement(By.Id("customerForm"));

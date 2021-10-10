@@ -5,6 +5,10 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using BankTests.PageObjects;
 using BankTests.Drivers;
+using FluentAssertions;
+using System.Threading;
+using TechTalk.SpecFlow.Assist;
+using TechTalk.SpecFlow.Assist.ValueRetrievers;
 
 namespace BankTests.Steps
 {
@@ -20,8 +24,7 @@ namespace BankTests.Steps
         {
             this.webDriverHelper = webDriverContext;
         }
-
-        
+       
 
         [Given(@"I have navigated to main bank page")]
         public void GivenIHaveNavigatedToMainBankPage()
@@ -40,62 +43,62 @@ namespace BankTests.Steps
         [When(@"I enter (.*) in fname field")]
         public void WhenIEnterInFnameField(string p0)
         {
-            regPage.fillFName(p0);
+            regPage.FillField(p0, regPage.FnameField);
         }
 
         [When(@"I enter (.*) in lname field")]
         public void WhenIEnterInLnameField(string p0)
         {
-            regPage.fillLName(p0);
+            regPage.FillField(p0, regPage.LnameField);
         }
 
         [When(@"I enter (.*) in address field")]
         public void WhenIEnterInAddressField(string p0)
         {
-            regPage.fillAddress(p0);
+            regPage.FillField(p0, regPage.AddressField);
         }
 
         [When(@"I enter (.*) in city field")]
         public void WhenIEnterInCityField(string p0)
         {
-            regPage.fillCity(p0);
+            regPage.FillField(p0, regPage.CityField);
         }
 
         [When(@"I enter (.*) in state field")]
         public void WhenIEnterInStateField(string p0)
         {
-            regPage.fillState(p0);
+            regPage.FillField(p0, regPage.StateField);
         }
 
         [When(@"I enter (.*) in zip field")]
         public void WhenIEnterInZipField(string p0)
         {
-            regPage.fillZip(p0);
+            regPage.FillField(p0, regPage.ZipField);
         }
 
         [When(@"I enter (.*) in phone field")]
         public void WhenIEnterInPhoneField(string p0)
         {
-            regPage.fillPhone(p0);
+            regPage.FillField(p0, regPage.PhoneField);
         }
 
         [When(@"I enter (.*) in ssn field")]
         public void WhenIEnterInSsnField(string p0)
         {
-            regPage.fillSSN(p0);
+            regPage.FillField(p0, regPage.SsnField);
         }
 
         [When(@"I enter (.*) in username field")]
         public void WhenIEnterInUsernameField(string p0)
         {
-            regPage.fillUsername(p0);
+            regPage.FillField(p0, regPage.UsernameField);
         }
 
         [When(@"I enter (.*) in password and confirm fields")]
         public void WhenIEnterInPasswordAndConfirmFields(string p0)
         {
-            regPage.fillPassword(p0);
-            regPage.confirmPassword(p0);
+            regPage.FillField(p0, regPage.PasswordField);
+            regPage.FillField(p0, regPage.ConfirmField);
         }
 
         [When(@"I click register button")]
@@ -107,7 +110,16 @@ namespace BankTests.Steps
         [Then(@"I should see a confirmation message")]
         public void ThenIShouldSeeAConfirmationMessage()
         {
-            regPage.LocateConfirmationMessage();
+            bool isMessageShown = regPage.LocateConfirmationMessage();
+            isMessageShown.Should().BeTrue();
         }
+
+        [Then(@"I should see an (.*) message")]
+        public void ThenIShouldSeeAnMessage(string p0)
+        {
+            bool isErrorMessageShown = regPage.LocateErrorMessage(p0);
+            isErrorMessageShown.Should().BeTrue();
+        }
+
     }
 }

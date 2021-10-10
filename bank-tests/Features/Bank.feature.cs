@@ -75,7 +75,7 @@ namespace BankTests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Registration check")]
-        [NUnit.Framework.TestCaseAttribute("paul", "mikj", "somestreet", "somecity", "somestate", "somezip", "651641615", "615651", "avlevovussssssss", "123123", null)]
+        [NUnit.Framework.TestCaseAttribute("paul", "mikj", "somestreet", "somecity", "somestate", "somezip", "651641615", "615651", "avlevovussssssssss", "123123", null)]
         public virtual void RegistrationCheck(string fname, string lname, string address, string city, string state, string zip, string phone, string ssn, string username, string password, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -152,6 +152,92 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 18
  testRunner.Then("I should see a confirmation message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Negative address registration check")]
+        [NUnit.Framework.TestCaseAttribute("paul", "mikj", "", "somecity", "somestate", "somezip", "651641615", "615651", "avlevovussssssss", "123123", "addressErr", null)]
+        [NUnit.Framework.TestCaseAttribute("paul", "", "somestreet", "somecity", "somestate", "somezip", "651641615", "615651", "avlevovussssssss", "123123", "lnameErr", null)]
+        public virtual void NegativeAddressRegistrationCheck(string fname, string lname, string address, string city, string state, string zip, string phone, string ssn, string username, string password, string error, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("fname", fname);
+            argumentsOfScenario.Add("lname", lname);
+            argumentsOfScenario.Add("address", address);
+            argumentsOfScenario.Add("city", city);
+            argumentsOfScenario.Add("state", state);
+            argumentsOfScenario.Add("zip", zip);
+            argumentsOfScenario.Add("phone", phone);
+            argumentsOfScenario.Add("ssn", ssn);
+            argumentsOfScenario.Add("username", username);
+            argumentsOfScenario.Add("password", password);
+            argumentsOfScenario.Add("error", error);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative address registration check", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 25
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 26
+ testRunner.Given("I have navigated to main bank page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 27
+ testRunner.And("I click register link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 28
+ testRunner.When(string.Format("I enter {0} in fname field", fname), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 29
+ testRunner.And(string.Format("I enter {0} in lname field", lname), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 30
+ testRunner.And(string.Format("I enter {0} in address field", address), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 31
+ testRunner.And(string.Format("I enter {0} in city field", city), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 32
+ testRunner.And(string.Format("I enter {0} in state field", state), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 33
+ testRunner.And(string.Format("I enter {0} in zip field", zip), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 34
+ testRunner.And(string.Format("I enter {0} in phone field", phone), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 35
+ testRunner.And(string.Format("I enter {0} in ssn field", ssn), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 36
+ testRunner.And(string.Format("I enter {0} in username field", username), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 37
+ testRunner.And(string.Format("I enter {0} in password and confirm fields", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 38
+ testRunner.And("I click register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 39
+ testRunner.Then(string.Format("I should see an {0} message", error), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
