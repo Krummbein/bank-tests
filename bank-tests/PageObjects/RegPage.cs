@@ -6,39 +6,30 @@ namespace BankTests.PageObjects
 {
     class RegPage
     {
-        private ChromeDriver driver;
-        private readonly string pageURL = "https://parabank.parasoft.com/parabank/register.htm";
+        private ChromeDriver _driver;
+        private readonly string _pageURL = "https://parabank.parasoft.com/parabank/register.htm";
 
         public RegPage(ChromeDriver driver)
         {
-            this.driver = driver;
+            _driver = driver;
         }
 
-        private IWebElement fnameField => driver.FindElement(By.Id("customer.firstName"));
-        private IWebElement lnameField => driver.FindElement(By.Id("customer.lastName"));
-        private IWebElement addressField => driver.FindElement(By.Id("customer.address.street"));
-        private IWebElement cityField => driver.FindElement(By.Id("customer.address.city"));
-        private IWebElement stateField => driver.FindElement(By.Id("customer.address.state"));
-        private IWebElement zipField => driver.FindElement(By.Id("customer.address.zipCode"));
-        private IWebElement phoneField => driver.FindElement(By.Id("customer.phoneNumber"));
-        private IWebElement ssnField => driver.FindElement(By.Id("customer.ssn"));
-        private IWebElement usernameField => driver.FindElement(By.Id("customer.username"));
-        private IWebElement passwordField => driver.FindElement(By.Id("customer.password"));
-        private IWebElement confirmField => driver.FindElement(By.Id("repeatedPassword"));
+        private readonly Dictionary<string, string> _fields = new Dictionary<string, string>
+        {
+            ["fname"] = "customer.firstName",
+            ["lname"] = "customer.lastName",
+            ["address"] = "customer.address.street",
+            ["city"] = "customer.address.city",
+            ["state"] = "customer.address.state",
+            ["zip"] = "customer.address.zipCode",
+            ["phone"] = "customer.phoneNumber",
+            ["ssn"] = "customer.ssn",
+            ["username"] = "customer.username",
+            ["password"] = "customer.password",
+            ["confirm"] = "repeatedPassword"
+        };
 
-        public IWebElement FnameField { get => fnameField; }
-        public IWebElement LnameField { get => lnameField; }
-        public IWebElement AddressField { get => addressField; }
-        public IWebElement CityField { get => cityField; }
-        public IWebElement StateField { get => stateField; }
-        public IWebElement ZipField { get => zipField; }
-        public IWebElement PhoneField { get => phoneField; }
-        public IWebElement SsnField { get => ssnField; }
-        public IWebElement UsernameField { get => usernameField; }
-        public IWebElement PasswordField { get => passwordField; }
-        public IWebElement ConfirmField { get => confirmField; }
-
-        public readonly Dictionary<string, string> errors = new Dictionary<string, string>
+        private readonly Dictionary<string, string> _errors = new Dictionary<string, string>
         {
             ["fnameErr"] = "customer.firstName.errors",
             ["lnameErr"] = "customer.lastName.errors",
@@ -53,29 +44,29 @@ namespace BankTests.PageObjects
             ["confirmErr"] = "repeatedPassword.errors"
         };
 
-        private IWebElement registrationButton => driver.FindElement(By.XPath("//input[@class='button' and @value='Register']"));
+        private IWebElement _registrationButton => _driver.FindElement(By.XPath("//input[@class='button' and @value='Register']"));
 
-        private IWebElement confirmationMessage => driver.FindElement(By.XPath("//p[text()='Your account was created successfully. You are now logged in.']"));
+        private IWebElement _confirmationMessage => _driver.FindElement(By.XPath("//p[text()='Your account was created successfully. You are now logged in.']"));
 
        
-        public void FillField(string input, IWebElement field)
+        public void FillField(string fieldName, string input)
         {
+            var field = _driver.FindElement(By.Id(_fields[fieldName]));
             field.SendKeys(input);
         }
 
         public void ClickRegisterButton()
         {
-            registrationButton.Click();
+            _registrationButton.Click();
         }
 
         public bool LocateConfirmationMessage()
         {
-            return confirmationMessage.Displayed;
+            return _confirmationMessage.Displayed;
         }
-
         public bool LocateErrorMessage(string errorName)
         {
-            var error = driver.FindElement(By.Id(errors[errorName]));
+            var error = _driver.FindElement(By.Id(_errors[errorName]));
             return error.Displayed;
         }
     }

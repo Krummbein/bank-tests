@@ -33,4 +33,17 @@
     
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Features\UpdateProfile.feature.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\UpdateProfile.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateProfile.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+  </ItemGroup>
+
 </Project>

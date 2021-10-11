@@ -7,16 +7,16 @@ namespace BankTests.Drivers
 {
     public class WebDriverHelper : IDisposable
     {
-        public ChromeDriver driver;
+        public ChromeDriver Driver;
 
         public WebDriverHelper()
         {
-            driver = new ChromeDriver();
+            Driver = new ChromeDriver();
         }
 
         public void Dispose()
         {
-            driver.Quit();
+            Driver.Quit();
         }
     }
 }
