@@ -5,31 +5,31 @@ using FluentAssertions;
 
 namespace BankTests.Steps
 {
-    [Binding]
-    public class BankSteps
+    [Binding, Scope(Feature = "Registration")]
+    public class RegistrationSteps
     {
-        private MainPage _mainPage;
+        private LoginPage _loginPage;
         private RegPage _regPage;
 
         private readonly WebDriverHelper _webDriverHelper;
 
-        public BankSteps(WebDriverHelper webDriverContext)
+        public RegistrationSteps(WebDriverHelper webDriverHelper)
         {
-            _webDriverHelper = webDriverContext;
+            _webDriverHelper = webDriverHelper;
+        }
+
+        [Given(@"I have navigated to bank's login page")]
+        public void GivenIHaveNavigatedToBankSLoginPage()
+        {
+            _loginPage = new LoginPage(_webDriverHelper.Driver);
+            _loginPage.NavigateOnMainPage();
         }
 
 
-        [Given(@"I have navigated to main bank page")]
-        public void GivenIHaveNavigatedToMainBankPage()
-        {
-            _mainPage = new MainPage(_webDriverHelper.Driver);
-            _mainPage.NavigateOnMainPage();
-        }
-        
         [Given(@"I click register link")]
         public void WhenIClickRegisterLink()
         {
-            _regPage = _mainPage.ClickRegistrationLink();
+            _regPage = _loginPage.ClickRegistrationLink();
         }
         
         [When(@"I enter the following information")]
@@ -51,8 +51,8 @@ namespace BankTests.Steps
             isMessageShown.Should().BeTrue();
         }
         
-        [Then(@"I should see an (.*) message")]
-        public void ThenIShouldSeeAnMessage(string errorName)
+        [Then(@"I should see an (.*) error message")]
+        public void ThenIShouldSeeAnErrorMessage(string errorName)
         {
             bool isErrorMessageShown = _regPage.LocateErrorMessage(errorName);
             isErrorMessageShown.Should().BeTrue();

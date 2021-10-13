@@ -75,12 +75,14 @@ namespace BankTests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Registration check")]
+        [NUnit.Framework.CategoryAttribute("registrationPositive")]
         public virtual void RegistrationCheck()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "registrationPositive"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Registration check", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 4
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -100,10 +102,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
- testRunner.Given("I have navigated to main bank page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 6
+ testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 7
  testRunner.And("I click register link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -135,20 +137,20 @@ this.ScenarioInitialize(scenarioInfo);
                             "615651"});
                 table1.AddRow(new string[] {
                             "username",
-                            "avlevovuzzz"});
+                            "avlevovuzzzzzz"});
                 table1.AddRow(new string[] {
                             "password",
                             "123123"});
                 table1.AddRow(new string[] {
                             "confirm",
                             "123123"});
-#line 7
+#line 8
  testRunner.When("I enter the following information", ((string)(null)), table1, "When ");
 #line hidden
-#line 20
+#line 21
  testRunner.And("I click register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 22
  testRunner.Then("I should see a registration confirmation message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -157,14 +159,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Negative reg check - empty address")]
-        [NUnit.Framework.CategoryAttribute("checkEmptyAddress")]
+        [NUnit.Framework.CategoryAttribute("registrationEmptyAddress")]
         public virtual void NegativeRegCheck_EmptyAddress()
         {
             string[] tagsOfScenario = new string[] {
-                    "checkEmptyAddress"};
+                    "registrationEmptyAddress"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative reg check - empty address", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 26
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -184,10 +186,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 28
- testRunner.Given("I have navigated to main bank page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 27
+ testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 29
+#line 28
  testRunner.And("I click register link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -226,14 +228,14 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             "confirm",
                             "123123"});
-#line 30
+#line 29
  testRunner.When("I enter the following information", ((string)(null)), table2, "When ");
 #line hidden
-#line 43
+#line 42
  testRunner.And("I click register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 44
- testRunner.Then("I should see an addressErr message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 43
+ testRunner.Then("I should see an addressErr error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -241,14 +243,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Negative reg check - empty last name")]
-        [NUnit.Framework.CategoryAttribute("checkEmptyLastName")]
+        [NUnit.Framework.CategoryAttribute("registrationEmptyLastName")]
         public virtual void NegativeRegCheck_EmptyLastName()
         {
             string[] tagsOfScenario = new string[] {
-                    "checkEmptyLastName"};
+                    "registrationEmptyLastName"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative reg check - empty last name", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 48
+#line 46
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -268,10 +270,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 50
- testRunner.Given("I have navigated to main bank page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 48
+ testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 51
+#line 49
  testRunner.And("I click register link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -310,14 +312,14 @@ this.ScenarioInitialize(scenarioInfo);
                 table3.AddRow(new string[] {
                             "confirm",
                             "123123"});
-#line 52
+#line 50
  testRunner.When("I enter the following information", ((string)(null)), table3, "When ");
 #line hidden
-#line 65
+#line 63
  testRunner.And("I click register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 66
- testRunner.Then("I should see an lnameErr message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 64
+ testRunner.Then("I should see an lnameErr error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -325,14 +327,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Negative reg check - empty city")]
-        [NUnit.Framework.CategoryAttribute("checkEmptyCity")]
+        [NUnit.Framework.CategoryAttribute("registrationEmptyCity")]
         public virtual void NegativeRegCheck_EmptyCity()
         {
             string[] tagsOfScenario = new string[] {
-                    "checkEmptyCity"};
+                    "registrationEmptyCity"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative reg check - empty city", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 70
+#line 67
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -352,10 +354,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 72
- testRunner.Given("I have navigated to main bank page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 69
+ testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 73
+#line 70
  testRunner.And("I click register link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -394,14 +396,14 @@ this.ScenarioInitialize(scenarioInfo);
                 table4.AddRow(new string[] {
                             "confirm",
                             "123123"});
-#line 74
+#line 71
  testRunner.When("I enter the following information", ((string)(null)), table4, "When ");
 #line hidden
-#line 87
+#line 84
  testRunner.And("I click register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 88
- testRunner.Then("I should see an cityErr message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 85
+ testRunner.Then("I should see an cityErr error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

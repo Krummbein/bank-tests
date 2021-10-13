@@ -18,46 +18,46 @@ namespace BankTests.PageObjects
             _driver = driver;
         }
 
-        private IWebElement _fnameField => _driver.FindElement(By.Id("customer.firstName"));
-        private IWebElement _lnameField => _driver.FindElement(By.Id("customer.lastName"));
-        private IWebElement _addressField => _driver.FindElement(By.Id("customer.address.street"));
-        private IWebElement _cityField => _driver.FindElement(By.Id("customer.address.city"));
-        private IWebElement _stateField => _driver.FindElement(By.Id("customer.address.state"));
-        private IWebElement _zipField => _driver.FindElement(By.Id("customer.address.zipCode"));
-        private IWebElement _phoneField => _driver.FindElement(By.Id("customer.phoneNumber"));
-
-        public IWebElement FnameProp { get => _fnameField; }
-        public IWebElement LnameProp { get => _lnameField; }
-        public IWebElement AddressProp { get => _addressField; }
-        public IWebElement CityProp { get => _cityField; }
-        public IWebElement StateProp { get => _stateField; }
-        public IWebElement ZipProp { get => _zipField; }
-        public IWebElement PhoneProp { get => _phoneField; }
-
-        public readonly Dictionary<string, string> errors = new Dictionary<string, string>
+        private readonly Dictionary<string, string> _fields = new Dictionary<string, string>
         {
-            ["fnameErr"] = "First name is required.",
-            ["lnameErr"] = "Last name is required.",
-            ["addressErr"] = "Address is required.",
-            ["cityErr"] = "City is required.",
-            ["stateErr"] = "State is required.",
-            ["zipErr"] = "Zip Code is required."
+            ["fname"] = "customer.firstName",
+            ["lname"] = "customer.lastName",
+            ["address"] = "customer.address.street",
+            ["city"] = "customer.address.city",
+            ["state"] = "customer.address.state",
+            ["zip"] = "customer.address.zipCode",
+            ["phone"] = "customer.phoneNumber",
+        };
+
+        public readonly Dictionary<string, string> _errors = new Dictionary<string, string>
+        {
+            ["fnameErr"] = "//span[@ng-if='customer && !customer.firstName']",
+            ["lnameErr"] = "//span[@ng-if='customer && !customer.firstName']",
+            ["addressErr"] = "//span[@ng-if='customer && !customer.firstName']",
+            ["cityErr"] = "//span[@ng-if='customer && !customer.firstName']",
+            ["stateErr"] = "//span[@ng-if='customer && !customer.firstName']",
+            ["zipErr"] = "//span[@ng-if='customer && !customer.address.zipCode']",
         };
 
         private IWebElement UpdateButton => _driver.FindElement(By.XPath("//input[@class='button' and @value='Update Profile']"));
 
         private IWebElement UpdateConfMessage => _driver.FindElement(By.XPath("//h1[text()='Profile Updated']"));
 
-
-        public void ClearAndFillField(string newInput, IWebElement field)
+        public void ClearAndFillField(string fieldName, string input)
         {
+            var field = _driver.FindElement(By.Id(_fields[fieldName]));
             field.Clear();
-            field.SendKeys(newInput);
+            field.SendKeys(input);
         }
 
         public void ClickUpdateButton()
         {
             UpdateButton.Click();
+            var waitForConfirm = new WebDriverWait(_driver, TimeSpan.FromSeconds(3)).Until(
+               c => {
+                   IWebElement e = c.FindElement(By.XPath("//h1[text()='Profile Updated']"));
+                   return e.Displayed;
+               });
         }
 
         public bool LocateUpdateConfMessage()
@@ -68,9 +68,8 @@ namespace BankTests.PageObjects
         // VULNERABLE TO XPATH INJECTIONS
         public bool LocateErrorMessage(string errorName)
         {
-            var error = _driver.FindElement(By.XPath("//span[text()='" + errors[errorName] + "']"));
+            var error = _driver.FindElement(By.XPath(_errors[errorName]));
             return error.Displayed;
         }
-
     }
 }

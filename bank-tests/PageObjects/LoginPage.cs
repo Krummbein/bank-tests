@@ -5,12 +5,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace BankTests.PageObjects
 {
-    class MainPage
+    class LoginPage
     {
         private ChromeDriver _driver;
-        private readonly string _pageURL = "https://parabank.parasoft.com/parabank/register.htm";
+        private readonly string _pageURL = "https://parabank.parasoft.com/parabank/index.htm";
 
-        public MainPage(ChromeDriver driver)
+        public LoginPage(ChromeDriver driver)
         {
             _driver = driver;
         }
@@ -54,9 +54,10 @@ namespace BankTests.PageObjects
             return new OverviewPage(_driver);
         }
 
-        public void LogInAsUserWithPassword(string nickname, string password)
+        public void FillUsernameAndPassword(string username, string password)
         {
-
+            UsernameField.SendKeys(username);
+            PasswordField.SendKeys(password);
         }
     }
 }

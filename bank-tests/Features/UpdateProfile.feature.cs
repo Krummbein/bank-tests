@@ -72,6 +72,225 @@ namespace BankTests.Features
         {
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Positive update check")]
+        [NUnit.Framework.CategoryAttribute("updatePositive")]
+        public virtual void PositiveUpdateCheck()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "updatePositive"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Positive update check", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 4
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 5
+ testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 6
+ testRunner.And("I have loged in as pavleus with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 7
+ testRunner.When("I click Update Contact Info link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "field",
+                            "input"});
+                table5.AddRow(new string[] {
+                            "fname",
+                            "paul"});
+                table5.AddRow(new string[] {
+                            "lname",
+                            "mikj"});
+                table5.AddRow(new string[] {
+                            "address",
+                            "somestreet"});
+                table5.AddRow(new string[] {
+                            "city",
+                            "somecity"});
+                table5.AddRow(new string[] {
+                            "state",
+                            "somestate"});
+                table5.AddRow(new string[] {
+                            "zip",
+                            "somezip"});
+                table5.AddRow(new string[] {
+                            "phone",
+                            "651641615"});
+#line 8
+ testRunner.And("I fill in new information", ((string)(null)), table5, "And ");
+#line hidden
+#line 17
+ testRunner.And("I click Update Profile button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
+ testRunner.Then("I should see an update confirmation message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Negative update check - empty fname")]
+        [NUnit.Framework.CategoryAttribute("updateEmptyFirstName")]
+        public virtual void NegativeUpdateCheck_EmptyFname()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "updateEmptyFirstName"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative update check - empty fname", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 21
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 23
+ testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 24
+ testRunner.And("I have loged in as pavleus with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+ testRunner.When("I click Update Contact Info link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "field",
+                            "input"});
+                table6.AddRow(new string[] {
+                            "fname",
+                            ""});
+                table6.AddRow(new string[] {
+                            "lname",
+                            "mikj"});
+                table6.AddRow(new string[] {
+                            "address",
+                            "somestreet"});
+                table6.AddRow(new string[] {
+                            "city",
+                            "somecity"});
+                table6.AddRow(new string[] {
+                            "state",
+                            "somestate"});
+                table6.AddRow(new string[] {
+                            "zip",
+                            "somezip"});
+                table6.AddRow(new string[] {
+                            "phone",
+                            "651641615"});
+#line 26
+ testRunner.And("I fill in new information", ((string)(null)), table6, "And ");
+#line hidden
+#line 35
+ testRunner.Then("I should see a fnameErr error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Negative update check - empty zip")]
+        [NUnit.Framework.CategoryAttribute("updateEmptyZip")]
+        public virtual void NegativeUpdateCheck_EmptyZip()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "updateEmptyZip"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative update check - empty zip", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 38
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 40
+ testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 41
+ testRunner.And("I have loged in as pavleus with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 42
+ testRunner.When("I click Update Contact Info link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "field",
+                            "input"});
+                table7.AddRow(new string[] {
+                            "fname",
+                            "paul"});
+                table7.AddRow(new string[] {
+                            "lname",
+                            "mikj"});
+                table7.AddRow(new string[] {
+                            "address",
+                            "somestreet"});
+                table7.AddRow(new string[] {
+                            "city",
+                            "somecity"});
+                table7.AddRow(new string[] {
+                            "state",
+                            "somestate"});
+                table7.AddRow(new string[] {
+                            "zip",
+                            ""});
+                table7.AddRow(new string[] {
+                            "phone",
+                            "651641615"});
+#line 43
+ testRunner.And("I fill in new information", ((string)(null)), table7, "And ");
+#line hidden
+#line 52
+ testRunner.Then("I should see a zipErr error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
