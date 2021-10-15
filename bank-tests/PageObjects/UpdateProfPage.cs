@@ -26,7 +26,7 @@ namespace BankTests.PageObjects
             ["city"] = "customer.address.city",
             ["state"] = "customer.address.state",
             ["zip"] = "customer.address.zipCode",
-            ["phone"] = "customer.phoneNumber",
+            ["phone"] = "customer.phoneNumber"
         };
 
         public readonly Dictionary<string, string> _errors = new Dictionary<string, string>
@@ -36,7 +36,7 @@ namespace BankTests.PageObjects
             ["addressErr"] = "//span[@ng-if='customer && !customer.firstName']",
             ["cityErr"] = "//span[@ng-if='customer && !customer.firstName']",
             ["stateErr"] = "//span[@ng-if='customer && !customer.firstName']",
-            ["zipErr"] = "//span[@ng-if='customer && !customer.address.zipCode']",
+            ["zipErr"] = "//span[@ng-if='customer && !customer.address.zipCode']"
         };
 
         private IWebElement UpdateButton => _driver.FindElement(By.XPath("//input[@class='button' and @value='Update Profile']"));

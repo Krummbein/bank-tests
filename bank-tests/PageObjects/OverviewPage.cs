@@ -17,6 +17,7 @@ namespace BankTests.PageObjects
         }
 
         private IWebElement _updateInfoLink => _driver.FindElement(By.XPath("//a[text()='Update Contact Info']"));
+        private IWebElement _findTransactionsLink => _driver.FindElement(By.XPath("//a[text()='Find Transactions']"));
 
         public UpdateProfPage ClickUpdateInfoLink()
         {
@@ -27,6 +28,17 @@ namespace BankTests.PageObjects
                    return e.Displayed;
                });
             return new UpdateProfPage(_driver);
+        }
+
+        public FindTransactionsPage ClickFindTransactionsLink()
+        {
+            _findTransactionsLink.Click();
+            var waitForConfirm = new WebDriverWait(_driver, TimeSpan.FromSeconds(3)).Until(
+               c => {
+                   IWebElement e = c.FindElement(By.XPath("//h1[text()='Find Transactions']"));
+                   return e.Displayed;
+               });
+            return new FindTransactionsPage(_driver);
         }
     }
 }
