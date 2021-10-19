@@ -32,13 +32,10 @@ namespace BankTests.PageObjects
         // not yet used, will be necessary in case of confirming by attribute
         private readonly Dictionary<string, string> _attributes = new Dictionary<string, string>
         {
-            ["dateAttribute"] = "",
-            ["amountAttribute"] = ""
+            ["dateAttribute"] = "//td[@class='ng-binding']",
+            ["amountAttribute"] = "//span[@class='ng-binding ng-scope']"
         };
 
-
-        private IWebElement FindByDateField => _driver.FindElement(By.Id("criteria.onDate"));
-        private IWebElement FindByAmountField => _driver.FindElement(By.Id("criteria.amount"));
         private IWebElement TransactionResults => _driver.FindElement(By.XPath("//h1[text()='Transaction Results']"));
         private IWebElement ErrorMessage => _driver.FindElement(By.ClassName("error"));
 
@@ -79,9 +76,20 @@ namespace BankTests.PageObjects
 
 
         // not yet used, will be necessary in case of confirming by attribute
-        public void LocateTransactions(string input, string attribute)
+        public bool LocateTransactions(string input, string attribute)
         {
+            IWebElement colomn;
 
+            switch (attribute)
+            {
+                case "dateAttribute":
+                    colomn = _driver.FindElement(By.XPath("//*[text()='"+input+"']"));
+                    return colomn.Displayed;
+                case "amountAttribute":
+                    colomn = _driver.FindElement(By.XPath("//*[text()='$" + input + "']"));
+                    return colomn.Displayed;
+                default: return false;
+            }
         }
     }
 }

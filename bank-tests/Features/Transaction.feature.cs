@@ -75,15 +75,16 @@ namespace BankTests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Positive find transaction")]
-        [NUnit.Framework.TestCaseAttribute("10-13-2021", "dateField", "dateButton", null)]
-        [NUnit.Framework.TestCaseAttribute("100", "amountField", "amountButton", null)]
-        public virtual void PositiveFindTransaction(string input, string field, string button, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("10-19-2021", "dateField", "dateButton", "dateAttribute", null)]
+        [NUnit.Framework.TestCaseAttribute("100.00", "amountField", "amountButton", "amountAttribute", null)]
+        public virtual void PositiveFindTransaction(string input, string field, string button, string attribute, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("input", input);
             argumentsOfScenario.Add("field", field);
             argumentsOfScenario.Add("button", button);
+            argumentsOfScenario.Add("attribute", attribute);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Positive find transaction", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 3
 this.ScenarioInitialize(scenarioInfo);
@@ -109,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 5
- testRunner.And("I have loged in as pavleus with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have loged in as p with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 6
  testRunner.When("I click Find Transactions link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -122,6 +123,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 9
  testRunner.Then("I should see transaction results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 10
+ testRunner.Then(string.Format("I should see {0} in transaction\'s {1}", input, attribute), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -140,7 +144,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("field", field);
             argumentsOfScenario.Add("button", button);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative find transaction", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 17
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -160,22 +164,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 18
+#line 19
  testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 19
+#line 20
  testRunner.And("I have loged in as pavleus with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 21
  testRunner.When("I click Find Transactions link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 22
  testRunner.And(string.Format("I enter {0} into {1}", input, field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 22
+#line 23
  testRunner.And(string.Format("I click {0} button", button), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 23
+#line 24
  testRunner.Then("I should see error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

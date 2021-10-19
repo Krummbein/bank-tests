@@ -71,5 +71,11 @@ namespace BankTests.Steps
             result.Should().BeTrue();
         }
 
+        [Then(@"I should see (.*) in transaction's (.*)")]
+        public void ThenIShouldSeeInTransactionS(string input, string attribute)
+        {
+            var result = _findTransactionsPage.LocateTransactions(input, attribute);
+            result.Should().BeTrue();
+        }
     }
 }
