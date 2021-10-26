@@ -8,14 +8,12 @@ using TechTalk.SpecFlow;
 
 namespace BankTests.PageObjects
 {
-    class UpdateProfPage
+    public class UpdateProfPage : Page
     {
-        private ChromeDriver _driver;
         private readonly string _pageURL = "https://parabank.parasoft.com/parabank/updateprofile.htm;jsessionid=D85D814AA1DA1D7AB162A9C5AF7D7617";
 
-        public UpdateProfPage(ChromeDriver driver)
+        public UpdateProfPage(ChromeDriver driver)  : base(driver)
         {
-            _driver = driver;
         }
 
         private readonly Dictionary<string, string> _fields = new Dictionary<string, string>

@@ -18,6 +18,7 @@ namespace BankTests.Steps
             _webDriverHelper = webDriverHelper;
         }
 
+
         [Given(@"I have navigated to bank's login page")]
         public void GivenIHaveNavigatedToBankSLoginPage()
         {
@@ -32,24 +33,28 @@ namespace BankTests.Steps
             _regPage = _loginPage.ClickRegistrationLink();
         }
         
+
         [When(@"I enter the following information")]
         public void WhenIEnterTheFollowingInformation(Table tableFieldInput)
         {
             foreach (var row in tableFieldInput.Rows) _regPage.FillField(row[0], row[1]);
         }
         
+
         [When(@"I click register button")]
         public void WhenIClickRegisterButton()
         {
             _regPage.ClickRegisterButton();
         }
         
+
         [Then(@"I should see a registration confirmation message")]
         public void ThenIShouldSeeARegistrationConfirmationMessage()
         {
             bool isMessageShown = _regPage.LocateConfirmationMessage();
             isMessageShown.Should().BeTrue();
         }
+
         
         [Then(@"I should see an (.*) error message")]
         public void ThenIShouldSeeAnErrorMessage(string errorName)

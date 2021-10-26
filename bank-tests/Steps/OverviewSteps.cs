@@ -1,30 +1,27 @@
 ﻿using BankTests.Drivers;
 using BankTests.PageObjects;
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using TechTalk.SpecFlow;
+using FluentAssertions;
 
 namespace BankTests.Steps
 {
-    [Binding, Scope(Feature = "FindTransaction")]
-    class FindTransactionsSteps
+    [Binding, Scope(Feature = "Overview")]
+    class OverviewSteps
     {
         private LoginPage _loginPage;
         private RegPage _regPage;
-        private FindTransactionsPage _findTransactionsPage;
+        private OpenAccPage _openAccPage;
         private TransferPage _transferPage;
+        private FindTransactionsPage _findTransactionsPage;
+
         private OverviewPage _overviewPage;
 
         private readonly WebDriverHelper _webDriverHelper;
 
-        public FindTransactionsSteps(WebDriverHelper webDriverHelper)
+        public OverviewSteps(WebDriverHelper webDriverHelper)
         {
             _webDriverHelper = webDriverHelper;
         }
-
 
         [Given(@"I have a registered user (.*) with password (.*)")]
         public void GivenIHaveARegisteredUserPWithPassword(string username, string password)
@@ -42,8 +39,6 @@ namespace BankTests.Steps
             _regPage.ClickRegisterButton();
         }
 
-
-        
         [Given(@"I have navigated to bank's login page")]
         public void GivenIHaveNavigatedToBankSLoginPageUpdate()
         {
@@ -51,7 +46,7 @@ namespace BankTests.Steps
             _loginPage.NavigateOnMainPage();
         }
 
-        
+
         [Given(@"I have loged in as (.*) with password (.*)")]
         public void GivenIHaveLogedInAsWithPassword(string username, string password)
         {
@@ -60,24 +55,52 @@ namespace BankTests.Steps
         }
 
 
-        // NOT USED
-        [Given(@"I have transfered (.*) funds")]
-        public void GivenIHaveTransferedFunds(string inputSumm)
+        [Given(@"I have created second account on this user")]
+        public void GivenIHaveCreatedSecondAccountOnThisUser()
         {
-            _transferPage = _regPage.ClickTransferFundsLink();
-            _transferPage.FillSummField(inputSumm);
-            _transferPage.ClickTransferButton();
+            _openAccPage = _regPage.ClickOpenAccountLink();
+            _openAccPage.ClickopenAccountButton();
         }
 
 
-        [When(@"I click Find Transactions link")]
-        public void WhenIClickFindTransactionsLink()
+
+        [Given(@"I have navigated to Transfer Page")]
+        public void GivenIHaveNavigatedToTransferPage()
+        {
+            _transferPage = _openAccPage.ClickTransferFundsLink();
+        }
+
+
+        [When(@"I transfer (.*) from the first account to the second")]
+        public void WhenITransferFromTheFirstAccountToTheSecond(string inputSumm)
+        {
+            _transferPage.FillSummField(inputSumm);
+            _transferPage.PickFirstAccountInFromList();
+            _transferPage.PickSecondAccountInToList();
+            _transferPage.ClickTransferButton();
+        }
+
+        [When(@"I navigate to Overview Page")]
+        public void WhenINavigateToOverviewPage()
+        {
+            _overviewPage = _transferPage.ClickOverviewLink();
+        }
+
+
+        [Then(@"I should see (.*) on the second account")]
+        public void ThenIShouldSeeOnTheSecondAccount(string newSumm)
+        {
+            var result = _overviewPage.GetSecondAccountBalance();
+            result.Should().BeEquivalentTo(newSumm);
+        }
+
+        [When(@"I navigate to Find Transaction Page")]
+        public void WhenINavigateToFindTransactionPage()
         {
             _findTransactionsPage = _overviewPage.ClickFindTransactionsLink();
         }
 
-
-        [When(@"I enter (.*) into (.*)")]
+        [When(@"I enter (.*) into (.*) field")]
         public void WhenIEnterInto(string input, string field)
         {
             _findTransactionsPage.FillField(input, field);
@@ -99,19 +122,12 @@ namespace BankTests.Steps
         }
 
 
-        [Then(@"I should see error message")]
-        public void ThenIShouldSeeErrorMessage()
-        {
-            var result = _findTransactionsPage.LocateErrorMessage();
-            result.Should().BeTrue();
-        }
-
-        
         [Then(@"I should see transactions with (.*) from the (.*)")]
         public void ThenIShouldSeeTransactionsWithFromThe(string input, string field)
         {
             var result = _findTransactionsPage.LocateTransactions(input, field);
             result.Should().BeTrue();
         }
+
     }
 }

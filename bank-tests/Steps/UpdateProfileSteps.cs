@@ -11,6 +11,9 @@ namespace BankTests.Steps
         private LoginPage _loginPage;
         private OverviewPage _overviewPage;
         private UpdateProfPage _updateProfPage;
+        private RegPage _regPage;
+
+        private Page _currentPage;
 
         private readonly WebDriverHelper _webDriverHelper;
 
@@ -19,6 +22,7 @@ namespace BankTests.Steps
             _webDriverHelper = webDriverHelper;
         }
 
+        // NOT USED
         [Given(@"I have navigated to bank's login page")]
         public void GivenIHaveNavigatedToBankSLoginPageUpdate()
         {
@@ -26,6 +30,7 @@ namespace BankTests.Steps
             _loginPage.NavigateOnMainPage();
         }
 
+        // NOT USED
         [Given(@"I have loged in as (.*) with password (.*)")]
         public void GivenIHaveLogedInAsWithPassword(string username, string password)
         {
@@ -33,10 +38,28 @@ namespace BankTests.Steps
             _overviewPage = _loginPage.ClickLogInButton();
         }
 
+
+
+        [Given(@"I have a registered user (.*) with password (.*)")]
+        public void GivenIHaveARegisteredUserPWithPassword(string username, string password)
+        {
+            string[] header = { "fname", "lname", "address", "city", "state", "zip", "phone", "ssn", "username", "password", "confirm" };
+            string[] input = { "paul", "meme", "address", "city", "state", "zip", "phone", "ssn", username, password, password };
+
+            _loginPage = new LoginPage(_webDriverHelper.Driver);
+            _loginPage.NavigateOnMainPage();
+
+            _regPage = _loginPage.ClickRegistrationLink();
+
+            for (int i = 0; i < header.Length; i++) _regPage.FillField(header[i], input[i]);
+
+            _regPage.ClickRegisterButton();
+        }
+
         [When(@"I click Update Contact Info link")]
         public void WhenIClickUpdateContactInfoLink()
         {
-            _updateProfPage = _overviewPage.ClickUpdateInfoLink();
+            _updateProfPage = _regPage.ClickUpdateInfoLink();
         }
 
         [When(@"I fill in new information")]

@@ -34,7 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Features\Transaction.feature.cs">
+    <Compile Update="Features\Overview.feature.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Update="Features\FindTransaction.feature.cs">
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Update="Features\UpdateProfile.feature.cs">
@@ -43,9 +46,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Features\Transaction.feature">
+    <SpecFlowFeatureFiles Update="Features\Overview.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Transaction.feature.cs</LastGenOutput>
+      <LastGenOutput>Overview.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\FindTransaction.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>FindTransaction.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\UpdateProfile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

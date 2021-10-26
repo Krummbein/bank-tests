@@ -6,39 +6,25 @@ using OpenQA.Selenium.Support.UI;
 
 namespace BankTests.PageObjects
 {
-    class OverviewPage
+    public class OverviewPage : Page
     {
-        private ChromeDriver _driver;
         private readonly string pageURL = "https://parabank.parasoft.com/parabank/overview.htm";
 
-        public OverviewPage(ChromeDriver driver)
+        public OverviewPage(ChromeDriver driver) : base(driver)
         {
-            _driver = driver;
         }
 
-        private IWebElement _updateInfoLink => _driver.FindElement(By.XPath("//a[text()='Update Contact Info']"));
-        private IWebElement _findTransactionsLink => _driver.FindElement(By.XPath("//a[text()='Find Transactions']"));
+        private IWebElement _secondAccountSumm => _driver.FindElement(By.XPath("//table[@id='accountTable']/tbody/tr[2]/td[2]"));
 
-        public UpdateProfPage ClickUpdateInfoLink()
+        public string GetSecondAccountBalance()
         {
-            _updateInfoLink.Click();
-            var waitForConfirm = new WebDriverWait(_driver, TimeSpan.FromSeconds(3)).Until(
+            var waitForConfirm = new WebDriverWait(_driver, TimeSpan.FromSeconds(4)).Until(
                c => {
-                   IWebElement e = c.FindElement(By.XPath("//h1[text()='Update Profile']"));
+                   IWebElement e = _secondAccountSumm;
                    return e.Displayed;
                });
-            return new UpdateProfPage(_driver);
-        }
 
-        public FindTransactionsPage ClickFindTransactionsLink()
-        {
-            _findTransactionsLink.Click();
-            var waitForConfirm = new WebDriverWait(_driver, TimeSpan.FromSeconds(3)).Until(
-               c => {
-                   IWebElement e = c.FindElement(By.XPath("//h1[text()='Find Transactions']"));
-                   return e.Displayed;
-               });
-            return new FindTransactionsPage(_driver);
+            return _secondAccountSumm.Text;
         }
     }
 }

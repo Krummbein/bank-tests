@@ -2,8 +2,7 @@
 
 @updatePositive
 Scenario: Positive update check
-	Given I have navigated to bank's login page
-	And I have loged in as pavleus with password 123
+	Given I have a registered user upd_pos_3 with password 123
 	When I click Update Contact Info link
 	And I fill in new information
 	| field   | input      |
@@ -19,9 +18,7 @@ Scenario: Positive update check
 
 @updateEmptyFirstName
 Scenario: Negative update check - empty fname
-
-	Given I have navigated to bank's login page
-	And I have loged in as pavleus with password 123
+	Given I have a registered user upd_neg_fname_3 with password 123
 	When I click Update Contact Info link
 	And I fill in new information
 	| field   | input      |
@@ -36,9 +33,7 @@ Scenario: Negative update check - empty fname
 
 @updateEmptyZip
 Scenario: Negative update check - empty zip
-
-	Given I have navigated to bank's login page
-	And I have loged in as pavleus with password 123
+	Given I have a registered user upd_neg_zip_3 with password 123
 	When I click Update Contact Info link
 	And I fill in new information
 	| field   | input      |

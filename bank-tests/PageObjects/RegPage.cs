@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace BankTests.PageObjects
 {
-    class RegPage
+    public class RegPage : Page
     {
-        private ChromeDriver _driver;
+
         private readonly string _pageURL = "https://parabank.parasoft.com/parabank/register.htm";
 
-        public RegPage(ChromeDriver driver)
+        public RegPage(ChromeDriver driver) : base(driver)
         {
-            _driver = driver;
+            
         }
 
         private readonly Dictionary<string, string> _fields = new Dictionary<string, string>
@@ -45,10 +47,9 @@ namespace BankTests.PageObjects
         };
 
         private IWebElement _registrationButton => _driver.FindElement(By.XPath("//input[@class='button' and @value='Register']"));
-
         private IWebElement _confirmationMessage => _driver.FindElement(By.XPath("//p[text()='Your account was created successfully. You are now logged in.']"));
+        
 
-       
         public void FillField(string fieldName, string input)
         {
             var field = _driver.FindElement(By.Id(_fields[fieldName]));
@@ -58,6 +59,11 @@ namespace BankTests.PageObjects
         public void ClickRegisterButton()
         {
             _registrationButton.Click();
+            var waitForConfirm = new WebDriverWait(_driver, TimeSpan.FromSeconds(3)).Until(
+              c => {
+                  IWebElement e = _confirmationMessage;
+                  return e.Displayed;
+              });
         }
 
         public bool LocateConfirmationMessage()

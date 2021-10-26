@@ -20,22 +20,22 @@ namespace BankTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Transaction")]
-    public partial class TransactionFeature
+    [NUnit.Framework.DescriptionAttribute("FindTransaction")]
+    public partial class FindTransactionFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "Transaction.feature"
+#line 1 "FindTransaction.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Transaction", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "FindTransaction", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,17 @@ namespace BankTests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Positive find transaction")]
-        [NUnit.Framework.TestCaseAttribute("10-19-2021", "dateField", "dateButton", "dateAttribute", null)]
-        [NUnit.Framework.TestCaseAttribute("100.00", "amountField", "amountButton", "amountAttribute", null)]
-        public virtual void PositiveFindTransaction(string input, string field, string button, string attribute, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Positive find transaction - manual")]
+        [NUnit.Framework.TestCaseAttribute("100", "FindByAmount", null)]
+        [NUnit.Framework.TestCaseAttribute("10-26-2021", "FindByDate", null)]
+        public virtual void PositiveFindTransaction_Manual(string input, string field, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("input", input);
             argumentsOfScenario.Add("field", field);
-            argumentsOfScenario.Add("button", button);
-            argumentsOfScenario.Add("attribute", attribute);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Positive find transaction", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 3
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Positive find transaction - manual", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -106,26 +104,81 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 6
  testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 5
+#line 7
  testRunner.And("I have loged in as p with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 6
+#line 8
  testRunner.When("I click Find Transactions link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 7
+#line 9
  testRunner.And(string.Format("I enter {0} into {1}", input, field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 8
- testRunner.And(string.Format("I click {0} button", button), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 9
- testRunner.Then("I should see transaction results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 10
- testRunner.Then(string.Format("I should see {0} in transaction\'s {1}", input, attribute), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And(string.Format("I click Find Transaction button for {0} field", field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.Then("the page with results should open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.And(string.Format("I should see transactions with {0} from the {1}", input, field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Positive find transaction - auto new user")]
+        [NUnit.Framework.TestCaseAttribute("100", "FindByAmount", null)]
+        public virtual void PositiveFindTransaction_AutoNewUser(string input, string field, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("input", input);
+            argumentsOfScenario.Add("field", field);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Positive find transaction - auto new user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 19
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 20
+ testRunner.Given("I have a registered user trans_pos_new_user_2 with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 21
+ testRunner.And(string.Format("I have transfered {0} funds", input), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 22
+ testRunner.When("I click Find Transactions link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 23
+ testRunner.And(string.Format("I enter {0} into {1}", input, field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 24
+ testRunner.And(string.Format("I click Find Transaction button for {0} field", field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+ testRunner.Then("the page with results should open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 26
+ testRunner.And(string.Format("I should see transactions with {0} from the {1}", input, field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -133,18 +186,17 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Negative find transaction")]
-        [NUnit.Framework.TestCaseAttribute("asdasd", "amountField", "amountButton", null)]
-        [NUnit.Framework.TestCaseAttribute("фыв", "amountField", "amountButton", null)]
-        [NUnit.Framework.TestCaseAttribute("*-_/", "amountField", "amountButton", null)]
-        public virtual void NegativeFindTransaction(string input, string field, string button, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("asdasd", "FindByAmount", null)]
+        [NUnit.Framework.TestCaseAttribute("фыв", "FindByAmount", null)]
+        [NUnit.Framework.TestCaseAttribute("*-_/", "FindByAmount", null)]
+        public virtual void NegativeFindTransaction(string input, string field, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("input", input);
             argumentsOfScenario.Add("field", field);
-            argumentsOfScenario.Add("button", button);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative find transaction", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 18
+#line 34
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -164,22 +216,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 19
+#line 35
  testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 20
- testRunner.And("I have loged in as pavleus with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 36
+ testRunner.And("I have loged in as p with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 37
  testRunner.When("I click Find Transactions link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 22
+#line 38
  testRunner.And(string.Format("I enter {0} into {1}", input, field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 23
- testRunner.And(string.Format("I click {0} button", button), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.And(string.Format("I click Find Transaction button for {0} field", field), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 24
+#line 40
  testRunner.Then("I should see error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

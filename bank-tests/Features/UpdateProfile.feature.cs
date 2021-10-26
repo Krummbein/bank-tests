@@ -103,12 +103,9 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 5
- testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a registered user upd_pos_3 with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
- testRunner.And("I have loged in as pavleus with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 7
  testRunner.When("I click Update Contact Info link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -135,13 +132,13 @@ this.ScenarioInitialize(scenarioInfo);
                 table5.AddRow(new string[] {
                             "phone",
                             "651641615"});
-#line 8
+#line 7
  testRunner.And("I fill in new information", ((string)(null)), table5, "And ");
 #line hidden
-#line 17
+#line 16
  testRunner.And("I click Update Profile button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 17
  testRunner.Then("I should see an update confirmation message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -157,7 +154,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "updateEmptyFirstName"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative update check - empty fname", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 21
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -177,13 +174,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
- testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+ testRunner.Given("I have a registered user upd_neg_fname_3 with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
- testRunner.And("I have loged in as pavleus with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 25
+#line 22
  testRunner.When("I click Update Contact Info link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -210,10 +204,10 @@ this.ScenarioInitialize(scenarioInfo);
                 table6.AddRow(new string[] {
                             "phone",
                             "651641615"});
-#line 26
+#line 23
  testRunner.And("I fill in new information", ((string)(null)), table6, "And ");
 #line hidden
-#line 35
+#line 32
  testRunner.Then("I should see a fnameErr error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -229,7 +223,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "updateEmptyZip"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Negative update check - empty zip", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 38
+#line 35
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -249,13 +243,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 40
- testRunner.Given("I have navigated to bank\'s login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 36
+ testRunner.Given("I have a registered user upd_neg_zip_3 with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 41
- testRunner.And("I have loged in as pavleus with password 123", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 42
+#line 37
  testRunner.When("I click Update Contact Info link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -282,10 +273,10 @@ this.ScenarioInitialize(scenarioInfo);
                 table7.AddRow(new string[] {
                             "phone",
                             "651641615"});
-#line 43
+#line 38
  testRunner.And("I fill in new information", ((string)(null)), table7, "And ");
 #line hidden
-#line 52
+#line 47
  testRunner.Then("I should see a zipErr error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
