@@ -137,7 +137,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "615651"});
                 table1.AddRow(new string[] {
                             "username",
-                            "reg_pos_2"});
+                            "reg_pos_4"});
                 table1.AddRow(new string[] {
                             "password",
                             "123123"});
@@ -221,7 +221,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "615651"});
                 table2.AddRow(new string[] {
                             "username",
-                            "reg_neg_address_2"});
+                            "reg_neg_address_4"});
                 table2.AddRow(new string[] {
                             "password",
                             "123123"});
@@ -305,7 +305,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "615651"});
                 table3.AddRow(new string[] {
                             "username",
-                            "reg_neg_lname_2"});
+                            "reg_neg_lname_4"});
                 table3.AddRow(new string[] {
                             "password",
                             "123123"});
@@ -389,7 +389,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "615651"});
                 table4.AddRow(new string[] {
                             "username",
-                            "reg_neg_city_2"});
+                            "reg_neg_city_4"});
                 table4.AddRow(new string[] {
                             "password",
                             "123123"});

@@ -15,7 +15,7 @@ Scenario: Registration check
 	| zip      | somezip    |
 	| phone    | 651641615  |
 	| ssn      | 615651     |
-	| username | reg_pos_2  |
+	| username | reg_pos_4  |
 	| password | 123123     |
 	| confirm  | 123123     |
 	And I click register button
@@ -36,7 +36,7 @@ Scenario: Negative reg check - empty address
 	| zip      | somezip           |
 	| phone    | 651641615         |
 	| ssn      | 615651            |
-	| username | reg_neg_address_2 |
+	| username | reg_neg_address_4 |
 	| password | 123123            |
 	| confirm  | 123123            |
 	And I click register button
@@ -57,7 +57,7 @@ Scenario: Negative reg check - empty last name
 	| zip      | somezip         |
 	| phone    | 651641615       |
 	| ssn      | 615651          |
-	| username | reg_neg_lname_2 |
+	| username | reg_neg_lname_4 |
 	| password | 123123          |
 	| confirm  | 123123          |
 	And I click register button
@@ -78,7 +78,7 @@ Scenario: Negative reg check - empty city
 	| zip      | somezip        |
 	| phone    | 651641615      |
 	| ssn      | 615651         |
-	| username | reg_neg_city_2 |
+	| username | reg_neg_city_4 |
 	| password | 123123         |
 	| confirm  | 123123         |
 	And I click register button

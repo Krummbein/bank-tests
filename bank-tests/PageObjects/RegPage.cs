@@ -59,17 +59,18 @@ namespace BankTests.PageObjects
         public void ClickRegisterButton()
         {
             _registrationButton.Click();
+        }
+
+        public bool LocateConfirmationMessage()
+        {
             var waitForConfirm = new WebDriverWait(_driver, TimeSpan.FromSeconds(3)).Until(
               c => {
                   IWebElement e = _confirmationMessage;
                   return e.Displayed;
               });
-        }
-
-        public bool LocateConfirmationMessage()
-        {
             return _confirmationMessage.Displayed;
         }
+
         public bool LocateErrorMessage(string errorName)
         {
             var error = _driver.FindElement(By.Id(_errors[errorName]));
