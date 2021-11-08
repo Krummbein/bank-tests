@@ -1,112 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using TechTalk.SpecFlow;
 
 namespace BankTests.PageObjects
 {
-    class RegPage
+    public class RegPage : Page
     {
-        private ChromeDriver driver;
-        private readonly string pageURL = "https://parabank.parasoft.com/parabank/register.htm";
 
-        public RegPage(ChromeDriver driver)
+        private readonly string _pageURL = "https://parabank.parasoft.com/parabank/register.htm";
+
+        public RegPage(ChromeDriver driver) : base(driver)
         {
-            this.driver = driver;
+            
         }
 
-        private IWebElement fnameField => driver.FindElement(By.Id("customer.firstName"));
-        private IWebElement lnameField => driver.FindElement(By.Id("customer.lastName"));
-        private IWebElement addressField => driver.FindElement(By.Id("customer.address.street"));
-        private IWebElement cityField => driver.FindElement(By.Id("customer.address.city"));
-        private IWebElement stateField => driver.FindElement(By.Id("customer.address.state"));
-        private IWebElement zipField => driver.FindElement(By.Id("customer.address.zipCode"));
-        private IWebElement phoneField => driver.FindElement(By.Id("customer.phoneNumber"));
-        private IWebElement ssnField => driver.FindElement(By.Id("customer.ssn"));
-        private IWebElement usernameField => driver.FindElement(By.Id("customer.username"));
-        private IWebElement passwordField => driver.FindElement(By.Id("customer.password"));
-        private IWebElement confirmField => driver.FindElement(By.Id("repeatedPassword"));
-        private IWebElement registrationButton => driver.FindElement(By.XPath("//input[@class='button' and @value='Register']"));
-
-        private IWebElement confirmationMessage => driver.FindElement(By.XPath("//p[text()='Your account was created successfully. You are now logged in.']"));
-
-        public void FillField(string objectName, string input)
+        private readonly Dictionary<string, string> _fields = new Dictionary<string, string>
         {
-            IWebElement neededField = (IWebElement)typeof(IWebElement).GetProperty(objectName);
-            neededField.SendKeys(input);
+            ["fname"] = "customer.firstName",
+            ["lname"] = "customer.lastName",
+            ["address"] = "customer.address.street",
+            ["city"] = "customer.address.city",
+            ["state"] = "customer.address.state",
+            ["zip"] = "customer.address.zipCode",
+            ["phone"] = "customer.phoneNumber",
+            ["ssn"] = "customer.ssn",
+            ["username"] = "customer.username",
+            ["password"] = "customer.password",
+            ["confirm"] = "repeatedPassword"
+        };
+
+        private readonly Dictionary<string, string> _errors = new Dictionary<string, string>
+        {
+            ["fnameErr"] = "customer.firstName.errors",
+            ["lnameErr"] = "customer.lastName.errors",
+            ["addressErr"] = "customer.address.street.errors",
+            ["cityErr"] = "customer.address.city.errors",
+            ["stateErr"] = "customer.address.state.errors",
+            ["zipErr"] = "customer.address.zipCode.errors",
+            ["phoneErr"] = "customer.phoneNumber.errors",
+            ["ssnErr"] = "customer.ssn.errors",
+            ["usernameErr"] = "customer.username.errors",
+            ["passwordErr"] = "customer.password.errors",
+            ["confirmErr"] = "repeatedPassword.errors"
+        };
+
+        private IWebElement _registrationButton => _driver.FindElement(By.XPath("//input[@class='button' and @value='Register']"));
+        private IWebElement _confirmationMessage => _driver.FindElement(By.XPath("//p[text()='Your account was created successfully. You are now logged in.']"));
+        
+
+        public void FillField(string fieldName, string input)
+        {
+            var field = _driver.FindElement(By.Id(_fields[fieldName]));
+            field.SendKeys(input);
         }
 
         public void ClickRegisterButton()
         {
-            registrationButton.Click();
-            var waitForConfirm = new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(
-                c => {
-                    return confirmationMessage.Displayed;
-                });
+            _registrationButton.Click();
         }
 
         public bool LocateConfirmationMessage()
         {
-            return confirmationMessage.Displayed;
+            var waitForConfirm = new WebDriverWait(_driver, TimeSpan.FromSeconds(3)).Until(
+              c => {
+                  IWebElement e = _confirmationMessage;
+                  return e.Displayed;
+              });
+            return _confirmationMessage.Displayed;
         }
 
-        public void fillFName(string input)
+        public bool LocateErrorMessage(string errorName)
         {
-            fnameField.SendKeys(input);
+            var error = _driver.FindElement(By.Id(_errors[errorName]));
+            return error.Displayed;
         }
-
-        public void fillLName(string input)
-        {
-            lnameField.SendKeys(input);
-        }
-
-        public void fillAddress(string input)
-        {
-            addressField.SendKeys(input);
-        }
-
-        public void fillCity(string input)
-        {
-            cityField.SendKeys(input);
-        }
-
-        public void fillState(string input)
-        {
-            stateField.SendKeys(input);
-        }
-
-        public void fillZip(string input)
-        {
-            zipField.SendKeys(input);
-        }
-
-        public void fillPhone(string input)
-        {
-            phoneField.SendKeys(input);
-        }
-
-        public void fillSSN(string input)
-        {
-            ssnField.SendKeys(input);
-        }
-
-        public void fillUsername(string input)
-        {
-            usernameField.SendKeys(input);
-        }
-
-        public void fillPassword(string input)
-        {
-            passwordField.SendKeys(input);
-        }
-
-        public void confirmPassword(string input)
-        {
-            confirmField.SendKeys(input);
-        }
-
     }
 }
